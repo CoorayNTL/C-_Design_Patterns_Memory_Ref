@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ConsoleApp1.com.sinlgleton
 {
 
@@ -11,7 +6,7 @@ namespace ConsoleApp1.com.sinlgleton
     public class Logger
     {
 
-        private static Logger instance;
+        private static Logger? instance;
         private Logger()
         {
 
