@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ConsoleApp1.com.basicconcepts
 {
     public class A
@@ -27,21 +22,35 @@ namespace ConsoleApp1.com.basicconcepts
         }
     }
 
+    public class WorkEmail : IEmail
+    {
+        public string Email { get; }
+
+        public WorkEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email cannot be null or empty", nameof(email));
+
+            Email = email;
+        }
+    }
     class Test
     {
         static void Main()
         {
-            A a = new A();
-            Console.WriteLine("A class obj");
-            a.MethodA();
+            //A a = new A();
+            //Console.WriteLine("A class obj");
+            //a.MethodA();
 
-            B b = new B();
-            Console.WriteLine("B class obj");
-            b.MethodB();
-            a.MethodA();
+            //B b = new B();
+            //Console.WriteLine("B class obj");
+            //b.MethodB();
+            //a.MethodA();
 
-            A a2 = new B();
-            a2.MethodA(); // a2 only access method A but new B() this how that happend 
+            //A a2 = new B();
+            //a2.MethodA(); 
+
+            // a2 only access method A but new B() this how that happend 
             /** 
             When you write A a2 = new B();, the reference type is A, but the object type is B.
             At compile time, a2 only knows the methods of class A.
@@ -50,6 +59,18 @@ namespace ConsoleApp1.com.basicconcepts
             However, you cannot directly call MethodB() on a2, because the compiler only sees it as type A. 
             To call MethodB(), you need to cast it back to B.
              * **/
+
+            //var emp = new Employee(1, "Tharindu");
+            //emp.Title = "Engineer";
+            //emp.EmployeeName = "Lakshan";
+            // emp.EmployeeID = 5  // emp.EmployeeID = 5; not allowed (read-only
+            // Console.WriteLine($"ID: {emp.EmployeeID}, Name: {emp.EmployeeName}, Title: {emp.Title}, Company: {emp.CompanyName}");
+
+            IEmail workEmail = new WorkEmail("tharindu@ibm.com");
+
+            Employee emp = new Employee(1, "Tharindu", workEmail);
+
+            Console.WriteLine($"ID: {emp.EmployeeID}, Name: {emp.EmployeeName}, Email: {emp.Email}");
         }
     }
 }
