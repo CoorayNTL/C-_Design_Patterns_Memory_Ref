@@ -11,22 +11,35 @@ namespace ConsoleApp1.com.sinlgleton
     public class Logger
     {
 
-        private static Logger logger;
-        private Logger() 
+        private static Logger instance;
+        private Logger()
         {
-        
+
         }
 
-        public static Logger GetInstance()
+        public static Logger Instance
         {
-            if (logger == null)
+            get
             {
-                logger = new Logger();
+                if (instance == null)
+                {
+                    instance = new Logger();
+                }
+                return instance;
             }
 
-            return logger;
-        }
-    }
+            //public static Logger GetInstance()
+            //{
+            //    if (logger == null)
+            //    {
+            //        logger = new Logger();
+            //    }
 
-    
+            //    return logger;
+            //}
+
+
+        }
+
+    }
 }
